@@ -497,7 +497,7 @@ private:
 template<typename K, typename Callable>
 gapi::cpu::GOCVFunctor gapi::cpu::ocv_kernel(Callable& c)
 {
-    using P = detail::OCVCallHelper<Callable, typename K::InArgs, typename K::OutArgs>;
+    using P = cv::detail::OCVCallHelper<Callable, typename K::InArgs, typename K::OutArgs>;
     return GOCVFunctor{ K::id()
                       , &K::getOutMeta
                       , std::bind(&P::callFunctor, std::placeholders::_1, std::ref(c))
@@ -507,7 +507,7 @@ gapi::cpu::GOCVFunctor gapi::cpu::ocv_kernel(Callable& c)
 template<typename K, typename Callable>
 gapi::cpu::GOCVFunctor gapi::cpu::ocv_kernel(const Callable& c)
 {
-    using P = detail::OCVCallHelper<Callable, typename K::InArgs, typename K::OutArgs>;
+    using P = cv::detail::OCVCallHelper<Callable, typename K::InArgs, typename K::OutArgs>;
     return GOCVFunctor{ K::id()
                       , &K::getOutMeta
                       , std::bind(&P::callFunctor, std::placeholders::_1, c)
